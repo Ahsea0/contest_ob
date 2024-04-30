@@ -139,18 +139,19 @@ void NetServer::accept(int fd)
 
 int NetServer::start()
 {
-  if (server_param_.use_std_io) {
+  printf("----------------------------------1");
+  if (server_param_.use_std_io) {printf("----------------------------------2");
     return -1;
-  } else if (server_param_.use_unix_socket) {
+  } else if (server_param_.use_unix_socket) {printf("----------------------------------3");
     return start_unix_socket_server();
-  } else {
+  } else {printf("---------------------------------4");
     return start_tcp_server();
   }
 }
 
 int NetServer::start_tcp_server()
 {
-  int                ret = 0;
+  int                ret = 0;printf("----------------------------------tcp");
   struct sockaddr_in sa;
 
   server_socket_ = socket(AF_INET, SOCK_STREAM, 0);
@@ -202,6 +203,7 @@ int NetServer::start_tcp_server()
 int NetServer::start_unix_socket_server()
 {
   int ret        = 0;
+  printf("--------------------------------------------ffffffffffffffffffffffffffff");
   server_socket_ = socket(PF_UNIX, SOCK_STREAM, 0);
   if (server_socket_ < 0) {
     LOG_ERROR("socket(): can not create unix socket: %s.", strerror(errno));
